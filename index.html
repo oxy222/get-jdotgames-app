@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JDot Games - Beta Download</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- QRCode.js Library for dynamic QR generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0f172a, #312e81);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-glow {
+            transition: all 0.3s ease;
+        }
+        
+        .btn-glow:hover {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Ensure QR code img doesn't have background issues */
+        #qrcode img {
+            margin: auto;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 relative overflow-hidden">
+
+    <!-- Decorative background blobs -->
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-indigo-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse delay-1000"></div>
+
+    <!-- Main Container -->
+    <div class="glass-card rounded-3xl p-8 max-w-md w-full relative z-10 text-center flex flex-col items-center">
+        
+        <!-- App Icon -->
+        <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-xl flex items-center justify-center mb-6">
+            <i class="fas fa-gamepad text-4xl text-white"></i>
+        </div>
+
+        <!-- Title & Badge -->
+        <div class="flex items-center space-x-3 mb-2">
+            <h1 class="text-3xl font-bold tracking-tight">JDot Games</h1>
+            <span class="bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs font-bold px-2.5 py-1 rounded-full">
+                BETA
+            </span>
+        </div>
+        
+        <p class="text-gray-400 mb-8 text-sm">
+            Experience the latest features and optimizations before the official release. Available exclusively for Android.
+        </p>
+
+        <!-- Primary Action: Download APK -->
+        <a href="https://github.com/oxy222/jdotgames/releases/download/app/jdot_games.apk" 
+           class="btn-glow w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-semibold py-4 px-6 rounded-xl flex items-center justify-center space-x-3 shadow-lg mb-3">
+            <i class="fab fa-android text-xl"></i>
+            <span>Download APK</span>
+            <i class="fas fa-download text-sm ml-auto opacity-70"></i>
+        </a>
+
+        <!-- Secondary Action: Desktop Website -->
+        <a href="https://jdotgames.vercel.app" 
+           class="w-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-white font-medium py-3 px-6 rounded-xl flex items-center justify-center space-x-3">
+            <i class="fas fa-desktop text-lg opacity-80"></i>
+            <span>Visit Website (Desktop)</span>
+        </a>
+
+        <!-- File Info -->
+        <div class="flex items-center justify-between w-full mt-6 text-xs text-gray-400 border-t border-white/10 pt-6">
+            <div class="flex flex-col items-center">
+                <i class="fas fa-code-branch mb-1 opacity-60"></i>
+                <span>Latest Build</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-mobile-alt mb-1 opacity-60"></i>
+                <span>Android 8.0+</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-shield-alt mb-1 opacity-60"></i>
+                <span>Safe & Secure</span>
+            </div>
+        </div>
+
+        <!-- Share Page via QR Code -->
+        <div class="w-full mt-6 border-t border-white/10 pt-6 flex flex-col items-center">
+            <h3 class="text-sm font-semibold mb-3 text-gray-200">Share this page</h3>
+            <div class="bg-white p-2 rounded-lg shadow-inner mb-3">
+                <div id="qrcode"></div>
+            </div>
+            <button onclick="downloadQR()" class="text-xs text-indigo-400 hover:text-indigo-300 flex items-center space-x-2 transition-colors">
+                <i class="fas fa-arrow-down"></i>
+                <span>Save QR Image</span>
+            </button>
+        </div>
+
+        <!-- Installation Instructions -->
+        <div class="w-full mt-8 bg-black/20 rounded-xl p-4 text-left border border-white/5">
+            <h3 class="text-sm font-semibold mb-2 flex items-center text-gray-200">
+                <i class="fas fa-info-circle mr-2 text-indigo-400"></i> How to install
+            </h3>
+            <ol class="text-xs text-gray-400 space-y-2 list-decimal list-inside">
+                <li>Download the `.apk` file using the button above.</li>
+                <li>Open the file from your notifications or downloads folder.</li>
+                <li>If prompted, allow installation from <strong>Unknown Sources</strong>.</li>
+                <li>Tap install and launch the game!</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-8 mb-4 text-xs text-gray-500 relative z-10">
+        &copy; 2026 JDot Games. Hosted via GitHub Releases.
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get current URL to encode in the QR code
+            let pageUrl = window.location.href;
+            
+            // Fallback URL just in case you are opening the file locally via file:// protocol
+            if(pageUrl.startsWith('file://')) {
+                pageUrl = 'https://jdotgames.vercel.app'; 
+            }
+
+            // Generate QR Code
+            new QRCode(document.getElementById("qrcode"), {
+                text: pageUrl,
+                width: 120,
+                height: 120,
+                colorDark : "#0f172a", // Match dark theme
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+
+        // Function to handle QR Code download
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            if (canvas) {
+                const url = canvas.toDataURL("image/png");
+                const link = document.createElement('a');
+                link.download = 'JDot-Games-Beta-QR.png';
+                link.href = url;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } else {
+                alert("QR Code is still generating, please try again in a moment.");
+            }
+        }
+    </script>
+</body>
+</html>
